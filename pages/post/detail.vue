@@ -58,13 +58,18 @@
         <!-- 文件上传 -->
         <div class="upload">
           <el-upload
-            action="https://jsonplaceholder.typicode.com/posts/"
+            action="http://127.0.0.1:1337/upload"
             list-type="picture-card"
             :on-preview="handlePictureCardPreview"
             :on-remove="handleRemove"
+            :file-list="fileList"
+            :headers="setToken()"
+            :on-error="errorUpload"
+            name="files"
           >
             <i class="el-icon-plus"></i>
           </el-upload>
+          <el-button @click="setToken" type="success">测试</el-button>
           <el-dialog :visible.sync="dialogVisible" size="tiny">
             <img width="100%" :src="dialogImageUrl" alt />
           </el-dialog>
@@ -96,7 +101,8 @@ export default {
       textarea: "",
       // 文件上传
       dialogImageUrl: "",
-      dialogVisible: false
+      dialogVisible: false,
+      fileList:[]
     };
   },
   mounted() {
@@ -125,6 +131,14 @@ export default {
     }
   },
   methods: {
+    // 测试
+    setToken(){
+      // e.preventDefult();：`Bearer ${token}`
+      // console.log(this.$store.state.user.userInfo.token);
+      let token=this.$store.state.user.userInfo.token
+      console.log({ Authorization:`Bearer ${token}`});
+      return { Authorization:`Bearer ${token}`}
+    },
     // 提交评论/重置
     submitForm() {},
     resetForm() {},
@@ -135,6 +149,14 @@ export default {
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url;
       this.dialogVisible = true;
+    },
+    beforeUpload(v){
+      // console.log(v);
+      // console.log(this.fileList);
+      // return true;
+    },
+    errorUpload(v){
+      console.log(v);
     }
   }
   //生命周期函数中js动态配置样式

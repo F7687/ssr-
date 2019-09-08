@@ -1,10 +1,12 @@
-<template>
+﻿<template>
   <section class="contianer">
     <el-row type="flex" justify="space-between">
       <!-- 顶部过滤列表 -->
       <div class="flights-content">
         <!-- 过滤条件 -->
-        <div></div>
+        <div>
+          <FlightsFlights :data="flightsItem" />
+        </div>
 
         <!-- 航班头部布局 -->
         <div>
@@ -41,34 +43,45 @@
 <script>
 import FlightsListHead from "@/components/air/flightsListHead.vue";
 import FlightsItem from "@/components/air/flightsItem.vue";
+import FlightsFlights from "@/components/air/flightsFlights.vue";
 // import moment from "moment";
 
 export default {
   components: {
     FlightsListHead,
-    FlightsItem
+    FlightsItem,
+    FlightsFlights
   },
   data() {
     return {
-      flightsItem: {},
-      newFlights:[],
-      pageSize:5,
-      pageIndex:1,
-      total:0
+      flightsItem: {
+        flights: [],
+        info: {},
+        options: {}
+      },
+      newFlights: [],
+      pageSize: 5,
+      pageIndex: 1,
+      total: 0
     };
   },
   methods: {
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
-      this.pageSize=val;
-      this.newFlights=this.flightsItem.flights.slice(this.pageSize*this.pageIndex-this.pageSize,this.pageSize*this.pageIndex)
-
+      this.pageSize = val;
+      // this.newFlights=this.flightsItem.flights.slice(this.pageSize*this.pageIndex-this.pageSize,this.pageSize*this.pageIndex)
     },
     handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);   
-      this.pageIndex=val;                         
-      this.newFlights=[]
-      this.newFlights=this.flightsItem.flights.slice(this.pageSize*this.pageIndex-this.pageSize,this.pageSize*this.pageIndex)
+      console.log(`当前页: ${val}`);
+      this.pageIndex = val;
+      console.log(
+        this.pageSize * this.pageIndex - this.pageSize,
+        this.pageSize * this.pageIndex
+      );
+      this.newFlights = this.flightsItem.flights.slice(
+        this.pageSize * this.pageIndex - this.pageSize,
+        this.pageSize * this.pageIndex
+      );
       console.log(this.newFlights);
     }
   },
@@ -81,8 +94,11 @@ export default {
       .then(res => {
         console.log(res);
         this.flightsItem = res.data;
-        this.total=this.flightsItem.flights.length;
-        this.newFlights=this.flightsItem.flights.slice(0,5)
+        this.total = this.flightsItem.flights.length;
+        this.newFlights = this.flightsItem.flights.slice(
+          this.pageSize * this.pageIndex - this.pageSize,
+          this.pageSize * this.pageIndex
+        );
         // console.log(this.newFlights);
       })
       .catch(err => {

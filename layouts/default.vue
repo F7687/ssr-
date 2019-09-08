@@ -5,7 +5,7 @@
     <!-- 内容占位组件 -->
     <nuxt />
     <!-- 底部组件 -->
-    <Footer/>
+    <!-- <Footer/> -->
   </div>
 </template>
 
