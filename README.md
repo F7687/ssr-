@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 # xianyun
 
 > My swell Nuxt.js project
+=======
+# 7687
+
+> My magnificent Nuxt.js project
+>>>>>>> 8dddb3caf24c2d919bacfd3f1edae5f735452243
 
 ## Build Setup
 

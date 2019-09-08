@@ -1,8 +1,15 @@
 {
+<<<<<<< HEAD
   "name": "xianyun",
   "version": "1.0.0",
   "description": "My swell Nuxt.js project",
   "author": "诸葛建国",
+=======
+  "name": "7687",
+  "version": "1.0.0",
+  "description": "My magnificent Nuxt.js project",
+  "author": "7687",
+>>>>>>> 8dddb3caf24c2d919bacfd3f1edae5f735452243
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -11,6 +18,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@nuxtjs/axios": "^5.3.6",
     "element-ui": "^2.4.11",
     "less": "^3.10.3",
@@ -18,6 +26,10 @@
     "moment": "^2.24.0",
     "nuxt": "^2.0.0",
     "vuex-persistedstate": "^2.5.4"
+=======
+    "nuxt": "^2.0.0",
+    "element-ui": "^2.4.11"
+>>>>>>> 8dddb3caf24c2d919bacfd3f1edae5f735452243
   },
   "devDependencies": {}
 }
